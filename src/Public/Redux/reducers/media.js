@@ -1,61 +1,59 @@
 const initialValue = {
-  historyData: [],
-  paymentData: [],
+  mediaCarousel: [],
+  allMedia: [],
   errMsg: [],
   isPending: false,
   isRejected: false,
   isFulfilled: false,
 };
 
-const historyReducer = (state = initialValue, action) => {
+const mediaReducer = (state = initialValue, action) => {
   switch (action.type) {
-    //for get product data
-    case 'GET_HISTORY_PENDING':
+    case 'MEDIA_CAROUSEL_PENDING':
       return {
         ...state,
         isPending: true,
         isRejected: false,
         isFulfilled: false,
       };
-    case 'GET_HISTORY_REJECTED':
+    case 'MEDIA_CAROUSEL_REJECTED':
       return {
         ...state,
         isPending: false,
         isRejected: true,
-        errMsg: action.payload.data,
+        errMsg: action.payload.message,
       };
-    case 'GET_HISTORY_FULFILLED':
+    case 'MEDIA_CAROUSEL_FULFILLED':
       return {
         ...state,
         isPending: false,
         isFulfilled: true,
-        historyData: action.payload.data.result,
+        mediaCarousel: action.payload.data,
       };
-    case 'GET_PAYMENT_PENDING':
+    case 'MEDIA_PENDING':
       return {
         ...state,
         isPending: true,
         isRejected: false,
         isFulfilled: false,
       };
-    case 'GET_PAYMENT_REJECTED':
+    case 'MEDIA_REJECTED':
       return {
         ...state,
         isPending: false,
         isRejected: true,
-        errMsg: action.payload.data,
+        errMsg: action.payload.message,
       };
-    case 'GET_PAYMENT_FULFILLED':
+    case 'MEDIA_FULFILLED':
       return {
         ...state,
         isPending: false,
         isFulfilled: true,
-        paymentData: action.payload.data.result,
+        allMedia: action.payload.data,
       };
-
     default:
       return state;
   }
 };
 
-export default historyReducer;
+export default mediaReducer;

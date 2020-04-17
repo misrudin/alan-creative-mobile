@@ -1,10 +1,13 @@
 import React from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 
-const News = ({data}) => {
+const News = ({data, onPress}) => {
   return (
     <>
-      <TouchableOpacity activeOpacity={0.6} style={styles.menuItem}>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={styles.menuItem}
+        onPress={() => onPress(data.id)}>
         <View style={styles.containImg}>
           <Image
             source={{

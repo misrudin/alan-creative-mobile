@@ -5,6 +5,8 @@ const initialValue = {
   isRejected: false,
   isFulfilled: false,
   media: [],
+  detailPost: [],
+  allPost: [],
 };
 
 const postsReducer = (state = initialValue, action) => {
@@ -50,6 +52,49 @@ const postsReducer = (state = initialValue, action) => {
         isPending: false,
         isFulfilled: true,
         media: action.payload.data,
+      };
+    case 'GET_DETAIL_PENDING':
+      return {
+        ...state,
+        isPending: true,
+        isRejected: false,
+        isFulfilled: false,
+      };
+    case 'GET_DETAIL_REJECTED':
+      return {
+        ...state,
+        isPending: false,
+        isRejected: true,
+        errMsg: action.payload.message,
+      };
+    case 'GET_DETAIL_FULFILLED':
+      return {
+        ...state,
+        isPending: false,
+        isFulfilled: true,
+        detailPost: action.payload.data,
+      };
+
+    case 'GET_ALL_POSTS_PENDING':
+      return {
+        ...state,
+        isPending: true,
+        isRejected: false,
+        isFulfilled: false,
+      };
+    case 'GET_ALL_POSTS_REJECTED':
+      return {
+        ...state,
+        isPending: false,
+        isRejected: true,
+        errMsg: action.payload.message,
+      };
+    case 'GET_ALL_POSTS_FULFILLED':
+      return {
+        ...state,
+        isPending: false,
+        isFulfilled: true,
+        allPost: action.payload.data,
       };
 
     default:

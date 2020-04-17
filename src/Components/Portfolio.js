@@ -1,15 +1,10 @@
 import React from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 
-const Post = ({data, onPress}) => {
-  // console.warn(data);
-
+const PortfolioComp = ({data}) => {
   return (
     <>
-      <TouchableOpacity
-        activeOpacity={0.6}
-        style={styles.menuItem}
-        onPress={() => onPress(data.id)}>
+      <TouchableOpacity activeOpacity={0.6} style={styles.menuItem}>
         <View style={styles.containImg}>
           <Image
             source={{
@@ -30,7 +25,7 @@ const Post = ({data, onPress}) => {
   );
 };
 
-export default Post;
+export default PortfolioComp;
 
 const styles = StyleSheet.create({
   img: {
@@ -40,8 +35,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   menuItem: {
-    width: '50%',
-    height: 200,
+    width: '100%',
+    height: 250,
     padding: 4,
     position: 'relative',
     marginBottom: 10,
@@ -63,7 +58,5 @@ const styles = StyleSheet.create({
   title: {
     paddingHorizontal: 10,
     marginTop: 5,
-    maxHeight: 29,
-    overflow: 'hidden',
   },
 });

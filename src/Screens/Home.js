@@ -55,12 +55,18 @@ const Home = props => {
   };
 
   useEffect(() => {
-    const unsubscribe = props.navigation.addListener('focus', () => {
+    // const unsubscribe = props.navigation.addListener('focus', () => {
+    //   getData();
+    //   getDataNews();
+    // });
+
+    // return unsubscribe;
+    getData();
+    getDataNews();
+    setInterval(function() {
       getData();
       getDataNews();
-    });
-
-    return unsubscribe;
+    }, 100000);
   }, []);
 
   const onPressMenu = location => {
@@ -100,14 +106,23 @@ const Home = props => {
               </View>
             ) : (
               newPosts.map((data, i) => {
-                return <Post key={i} data={data} onPress={url => null} />;
+                return (
+                  <Post
+                    key={i}
+                    data={data}
+                    onPress={id =>
+                      props.navigation.navigate('ViewArticle', {id: id})
+                    }
+                  />
+                );
               })
             )}
           </View>
         </View>
         {!loading && !error ? (
           <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('Article')}>
               <Text style={styles.button}>Lihat Artikel Lainnya</Text>
             </TouchableOpacity>
           </View>
@@ -136,14 +151,22 @@ const Home = props => {
               </View>
             ) : (
               newNews.map((data, i) => {
-                return <News key={i} data={data} />;
+                return (
+                  <News
+                    key={i}
+                    data={data}
+                    onPress={id =>
+                      props.navigation.navigate('ViewNews', {id: id})
+                    }
+                  />
+                );
               })
             )}
           </View>
         </View>
         {!loading2 && !error2 ? (
           <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.navigate('News')}>
               <Text style={styles.button}>Lihat Berita Lainnya</Text>
             </TouchableOpacity>
           </View>

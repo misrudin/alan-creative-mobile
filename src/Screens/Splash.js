@@ -2,10 +2,13 @@ import React, {useEffect} from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {loading} from '../Public/Redux/actions/auth';
+// import {getMedia, getMediaCarousel} from '../Public/Redux/actions/media';
 
 const Splash = () => {
   const dispatch = useDispatch();
   useEffect(() => {
+    // dispatch(getMediaCarousel());
+    // dispatch(getMedia());
     setTimeout(() => {
       dispatch(loading());
     }, 1000);

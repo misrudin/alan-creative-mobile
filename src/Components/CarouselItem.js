@@ -7,11 +7,11 @@ const CarouselItem = ({item}) => {
   // console.warn(item);
   return (
     <View style={styles.cardView}>
-      <Image style={styles.image} source={item.image} />
-      <View style={styles.textView}>
+      <Image style={styles.image} source={{uri: item.link}} />
+      {/* <View style={styles.textView}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
-      </View>
+      </View> */}
     </View>
   );
 };

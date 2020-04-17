@@ -5,7 +5,7 @@ import {StatusBar} from 'react-native';
 
 import {Provider} from 'react-redux';
 import store from './src/Public/Redux/store';
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 
 const App = () => {
   return (

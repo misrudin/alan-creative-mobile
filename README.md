@@ -5,4 +5,4 @@ Mobile aplication Alan Creative - React Native
 
 ## Demo
 
-<img width="40%" src="https://user-images.githubusercontent.com/37394664/79632526-1241e600-818a-11ea-9f4e-0d086cb531f0.jpg"> <img width="40%" src="https://user-images.githubusercontent.com/37394664/79632533-1a018a80-818a-11ea-8020-f28d500fd39d.jpg">  <img width="40%" src="https://user-images.githubusercontent.com/37394664/79632534-1e2da800-818a-11ea-9d1b-70c8ee40e4bb.jpg">  
+<img width="30%" src="https://user-images.githubusercontent.com/37394664/79632692-318d4300-818b-11ea-9ac4-677e41878a13.jpg">  <img width="30%" src="https://user-images.githubusercontent.com/37394664/79632696-394ce780-818b-11ea-88e2-c8d90afa0d9a.jpg">  <img width="30%" src="https://user-images.githubusercontent.com/37394664/79632707-3f42c880-818b-11ea-819c-8bdbd857feee.jpg">  

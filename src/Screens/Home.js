@@ -110,8 +110,10 @@ const Home = props => {
                   <Post
                     key={i}
                     data={data}
-                    onPress={id =>
-                      props.navigation.navigate('ViewArticle', {id: id})
+                    onPress={dataArticle =>
+                      props.navigation.navigate('ViewArticle', {
+                        data: dataArticle,
+                      })
                     }
                   />
                 );
@@ -155,8 +157,8 @@ const Home = props => {
                   <News
                     key={i}
                     data={data}
-                    onPress={id =>
-                      props.navigation.navigate('ViewNews', {id: id})
+                    onPress={dataNews =>
+                      props.navigation.navigate('ViewNews', {data: dataNews})
                     }
                   />
                 );

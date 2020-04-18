@@ -4,6 +4,7 @@ const initialValue = {
   isPending: false,
   isRejected: false,
   isFulfilled: false,
+  detailPort: [],
 };
 
 const portfolioReducer = (state = initialValue, action) => {
@@ -28,6 +29,27 @@ const portfolioReducer = (state = initialValue, action) => {
         isPending: false,
         isFulfilled: true,
         allPortfolio: action.payload.data,
+      };
+    case 'PORT_DETAIL_PENDING':
+      return {
+        ...state,
+        isPending: true,
+        isRejected: false,
+        isFulfilled: false,
+      };
+    case 'PORT_DETAIL_REJECTED':
+      return {
+        ...state,
+        isPending: false,
+        isRejected: true,
+        errMsg: action.payload.message,
+      };
+    case 'PORT_DETAIL_FULFILLED':
+      return {
+        ...state,
+        isPending: false,
+        isFulfilled: true,
+        detailPort: action.payload.data,
       };
     default:
       return state;

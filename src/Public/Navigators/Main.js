@@ -60,7 +60,6 @@ const Navigators = () => {
           name="Acount"
           component={Acount}
           options={{
-            unmountOnBlur: true,
             tabBarLabel: 'Akun Saya',
             tabBarIcon: ({color, size}) => (
               <Icon name="user-circle" size={size} color={color} />
@@ -91,52 +90,52 @@ const AuthNav = () => {
           <Stack.Screen
             name="Who"
             component={WhoWeAre}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Who We Are'}}
           />
           <Stack.Screen
             name="Meet"
             component={MetTheTeam}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Meet The Team'}}
           />
           <Stack.Screen
             name="Portfolio"
             component={PortfolioCom}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Our Portfolio'}}
           />
           <Stack.Screen
             name="News"
             component={NewsCom}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'News'}}
           />
           <Stack.Screen
             name="Career"
             component={CareerCom}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Career'}}
           />
           <Stack.Screen
             name="Article"
             component={ArticleCom}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Article'}}
           />
           <Stack.Screen
             name="Services"
             component={ServicesCom}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Services'}}
           />
           <Stack.Screen
             name="Instagram"
             component={InstagramCom}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'Instagram'}}
           />
           <Stack.Screen
             name="ViewArticle"
             component={Article}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'View Article'}}
           />
           <Stack.Screen
             name="ViewNews"
             component={News}
-            options={{headerShown: false}}
+            options={{headerShown: true, headerTitle: 'View News'}}
           />
         </>
       </Stack.Navigator>

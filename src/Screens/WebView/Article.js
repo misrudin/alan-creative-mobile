@@ -7,22 +7,27 @@ import {
   Dimensions,
   ActivityIndicator,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDetailPost} from '../../Public/Redux/actions/posts';
+import {getDetailMedia} from '../../Public/Redux/actions/media';
 
 const {width, height} = Dimensions.get('window');
 
 const Article = ({route}) => {
   const {detailPost} = useSelector(state => state.posts);
+  const {detailMedia} = useSelector(state => state.media);
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const getData = async () => {
     setLoading(true);
-    await dispatch(getDetailPost(route.params.id))
+    await dispatch(getDetailPost(route.params.data.id));
+    await dispatch(getDetailMedia(route.params.data.featured_media))
       .then(() => {
         setError(false);
         setLoading(false);
@@ -63,6 +68,10 @@ const Article = ({route}) => {
       ) : (
         <ScrollView style={{flex: 1, paddingHorizontal: 10, marginBottom: 5}}>
           <View style={styles.header}>
+            <Image
+              source={{uri: detailMedia.link}}
+              style={{width: width, height: height / 3}}
+            />
             <Text style={styles.title}>{detailPost.title.rendered}</Text>
           </View>
           <HTML

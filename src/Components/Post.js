@@ -1,19 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {getMedia} from '../Public/Redux/actions/media';
 
-const Post = ({data, onPress}) => {
+const Post = ({data, onPress, allmedia}) => {
   // console.warn(data);
+  const {allMedia} = useSelector(state => state.media);
+  const dispatch = useDispatch();
+  const [media, setMedia] = useState();
+
+  const getDetail = async id => {
+    await dispatch(getMedia(id)).then(() => {
+      setMedia(allMedia);
+    });
+  };
+
+  useEffect(() => {
+    getDetail(data.featured_media);
+  }, []);
 
   return (
     <>
       <TouchableOpacity
         activeOpacity={0.6}
         style={styles.menuItem}
-        onPress={() => onPress(data.id)}>
+        onPress={() => onPress(data)}>
         <View style={styles.containImg}>
           <Image
             source={{
-              uri: 'https://alan.co.id/alan-creative/ramadhan-web/',
+              uri: allMedia[0],
             }}
             style={styles.img}
             resizeMode="contain"

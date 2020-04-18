@@ -14,9 +14,9 @@ const Saved = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.brand}>
+        {/* <View style={styles.brand}>
           <Text style={styles.title}>Saved</Text>
-        </View>
+        </View> */}
         <View style={styles.header}>
           <TextInput style={styles.input} placeholder="Search..." />
         </View>

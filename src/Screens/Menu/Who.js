@@ -10,7 +10,7 @@ const Who = () => {
         <Text style={styles.h1}>Alan Creative</Text>
       </View>
       <View style={styles.main}>
-        <Text>Alan</Text>
+        <Text>About Alan Creative</Text>
       </View>
     </View>
   );

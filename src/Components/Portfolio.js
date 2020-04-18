@@ -1,10 +1,13 @@
 import React from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 
-const PortfolioComp = ({data}) => {
+const PortfolioComp = ({data, onPress}) => {
   return (
     <>
-      <TouchableOpacity activeOpacity={0.6} style={styles.menuItem}>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={styles.menuItem}
+        onPress={() => onPress(data)}>
         <View style={styles.containImg}>
           <Image
             source={{

@@ -7,3 +7,9 @@ export const getPortfolio = () => {
     payload: axios.get(URL + `our_portfolio`),
   };
 };
+export const getDetailPortfolio = id => {
+  return {
+    type: 'PORT_DETAIL',
+    payload: axios.get(URL + `our_portfolio/${id}`),
+  };
+};

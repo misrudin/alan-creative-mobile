@@ -1,17 +1,31 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import {getDetailMediaNews} from '../Public/Redux/actions/media';
+import {useDispatch, useSelector} from 'react-redux';
 
 const News = ({data, onPress}) => {
+  const {detailMediaN} = useSelector(state => state.media);
+  const dispatch = useDispatch();
+  const [media, setMedia] = useState([]);
+
+  const getDetail = async id => {
+    await dispatch(getDetailMediaNews(id));
+  };
+
+  useEffect(() => {
+    getDetail(data.featured_media);
+  }, []);
+
   return (
     <>
       <TouchableOpacity
         activeOpacity={0.6}
         style={styles.menuItem}
-        onPress={() => onPress(data.id)}>
+        onPress={() => onPress(data)}>
         <View style={styles.containImg}>
           <Image
             source={{
-              uri: 'https://alan.co.id/alan-creative/ramadhan-web/',
+              uri: detailMediaN.link,
             }}
             style={styles.img}
             resizeMode="contain"

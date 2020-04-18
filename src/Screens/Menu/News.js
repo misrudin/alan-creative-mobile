@@ -29,10 +29,11 @@ const Article = props => {
   const [show, setShow] = useState(false);
   const [loading2, setLoading2] = useState(true);
   const [error2, setError2] = useState(false);
+  const [key, setKey] = useState('');
 
   const getData = async () => {
     setLoading(true);
-    await dispatch(getAllNews())
+    await dispatch(getAllNews(key))
       .then(() => {
         setLoading(false);
         setError(false);
@@ -64,9 +65,6 @@ const Article = props => {
 
   useEffect(() => {
     getData();
-    setInterval(function() {
-      getData();
-    }, 100000);
   }, []);
 
   return (
@@ -76,7 +74,14 @@ const Article = props => {
           <Text style={styles.title}>Article</Text>
         </View> */}
         <View style={styles.header}>
-          <TextInput style={styles.input} placeholder="Search..." />
+          <TextInput
+            style={styles.input}
+            placeholder="Search..."
+            value={key}
+            onChangeText={e => setKey(e)}
+            onSubmitEditing={() => getData()}
+            keyboardType={'web-search'}
+          />
         </View>
         <ScrollView>
           <View style={styles.main}>
@@ -99,7 +104,12 @@ const Article = props => {
             ) : (
               allNews.map((data, i) => {
                 return (
-                  <News key={i} data={data} onPress={data => muncul(data)} />
+                  <News
+                    key={i}
+                    data={data}
+                    index={i}
+                    onPress={data => muncul(data)}
+                  />
                 );
               })
             )}

@@ -1,7 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import {getDetailMediaPort} from '../Public/Redux/actions/media';
+import {useDispatch, useSelector} from 'react-redux';
 
-const PortfolioComp = ({data, onPress}) => {
+const PortfolioComp = ({data, onPress, index}) => {
+  const {detailMediaP} = useSelector(state => state.media);
+  const dispatch = useDispatch();
+  const [media, setMedia] = useState([]);
+
+  const getDetail = async id => {
+    await dispatch(getDetailMediaPort(id));
+  };
+
+  useEffect(() => {
+    getDetail(data.featured_media);
+  }, []);
+
   return (
     <>
       <TouchableOpacity
@@ -11,7 +25,7 @@ const PortfolioComp = ({data, onPress}) => {
         <View style={styles.containImg}>
           <Image
             source={{
-              uri: 'https://alan.co.id/alan-creative/ramadhan-web/',
+              uri: detailMediaP[index],
             }}
             style={styles.img}
             resizeMode="contain"

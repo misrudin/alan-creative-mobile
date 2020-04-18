@@ -3,11 +3,13 @@ import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getMedia} from '../Public/Redux/actions/media';
 
-const Post = ({data, onPress, allmedia}) => {
+const Post = ({data, onPress, index}) => {
   // console.warn(data);
   const {allMedia} = useSelector(state => state.media);
   const dispatch = useDispatch();
   const [media, setMedia] = useState();
+
+  // console.log(index);
 
   const getDetail = async id => {
     await dispatch(getMedia(id)).then(() => {
@@ -28,7 +30,7 @@ const Post = ({data, onPress, allmedia}) => {
         <View style={styles.containImg}>
           <Image
             source={{
-              uri: allMedia[0],
+              uri: allMedia[index],
             }}
             style={styles.img}
             resizeMode="contain"

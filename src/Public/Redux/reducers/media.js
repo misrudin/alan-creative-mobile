@@ -7,6 +7,7 @@ const initialValue = {
   isFulfilled: false,
   detailMedia: [],
   detailMediaN: [],
+  detailMediaP: [],
 };
 
 const mediaReducer = (state = initialValue, action) => {
@@ -93,7 +94,28 @@ const mediaReducer = (state = initialValue, action) => {
         ...state,
         isPending: false,
         isFulfilled: true,
-        detailMediaN: action.payload.data,
+        detailMediaN: state.detailMediaN.concat(action.payload.data.link),
+      };
+    case 'P_DETAIL_PENDING':
+      return {
+        ...state,
+        isPending: true,
+        isRejected: false,
+        isFulfilled: false,
+      };
+    case 'P_DETAIL_REJECTED':
+      return {
+        ...state,
+        isPending: false,
+        isRejected: true,
+        errMsg: action.payload.message,
+      };
+    case 'P_DETAIL_FULFILLED':
+      return {
+        ...state,
+        isPending: false,
+        isFulfilled: true,
+        detailMediaP: state.detailMediaN.concat(action.payload.data.link),
       };
     default:
       return state;

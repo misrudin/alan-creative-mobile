@@ -7,10 +7,10 @@ export const getNewNews = () => {
     payload: axios.get(URL + 'berita?per_page=2&orderby=date'),
   };
 };
-export const getAllNews = () => {
+export const getAllNews = key => {
   return {
     type: 'GET_ALL_NEWS',
-    payload: axios.get(URL + 'berita?page=1'),
+    payload: axios.get(URL + `berita?page=1&search=${key}`),
   };
 };
 export const getDetailNews = id => {

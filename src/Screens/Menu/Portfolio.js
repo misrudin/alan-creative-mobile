@@ -74,7 +74,17 @@ const Portfolio = props => {
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.header}>
-            <Text style={styles.h1}>Our Portfolio</Text>
+            <Image
+              source={{
+                uri:
+                  'https://alan.co.id/wp-content/uploads/2019/11/banner_celebrites_8.png',
+              }}
+              style={{width: '50%', height: 150}}
+              resizeMode={'contain'}
+            />
+            <Text style={styles.h1}>
+              Boost your business with Alan Creative
+            </Text>
           </View>
           <View style={styles.main}>
             {loading ? (
@@ -100,6 +110,7 @@ const Portfolio = props => {
                   <PortfolioComp
                     key={i}
                     data={data}
+                    index={i}
                     onPress={data => muncul(data)}
                   />
                 );
@@ -173,6 +184,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     color: '#000',
+    position: 'absolute',
+    bottom: 20,
   },
   main: {
     paddingHorizontal: 10,

@@ -17,7 +17,10 @@ const Acount = () => {
         <View style={styles.avatar}>
           <Image
             style={styles.image}
-            source={require('../Assets/Img/logo-alan-creative.png')}
+            source={{
+              uri: 'https://britz.mcmaster.ca/images/nouserimage.gif/image',
+            }}
+            resizeMode={'contain'}
           />
         </View>
         <Text style={styles.nama}>Alan Creative</Text>

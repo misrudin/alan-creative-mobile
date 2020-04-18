@@ -3,7 +3,7 @@ import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 import {getDetailMediaNews} from '../Public/Redux/actions/media';
 import {useDispatch, useSelector} from 'react-redux';
 
-const News = ({data, onPress}) => {
+const News = ({data, onPress, index}) => {
   const {detailMediaN} = useSelector(state => state.media);
   const dispatch = useDispatch();
   const [media, setMedia] = useState([]);
@@ -25,7 +25,7 @@ const News = ({data, onPress}) => {
         <View style={styles.containImg}>
           <Image
             source={{
-              uri: detailMediaN.link,
+              uri: detailMediaN[index],
             }}
             style={styles.img}
             resizeMode="contain"

@@ -55,18 +55,12 @@ const Home = props => {
   };
 
   useEffect(() => {
-    // const unsubscribe = props.navigation.addListener('focus', () => {
-    //   getData();
-    //   getDataNews();
-    // });
-
-    // return unsubscribe;
-    getData();
-    getDataNews();
-    setInterval(function() {
+    const unsubscribe = props.navigation.addListener('focus', () => {
       getData();
       getDataNews();
-    }, 100000);
+    });
+
+    return unsubscribe;
   }, []);
 
   const onPressMenu = location => {
@@ -110,6 +104,7 @@ const Home = props => {
                   <Post
                     key={i}
                     data={data}
+                    index={i}
                     onPress={dataArticle =>
                       props.navigation.navigate('ViewArticle', {
                         data: dataArticle,
@@ -157,6 +152,7 @@ const Home = props => {
                   <News
                     key={i}
                     data={data}
+                    index={i}
                     onPress={dataNews =>
                       props.navigation.navigate('ViewNews', {data: dataNews})
                     }

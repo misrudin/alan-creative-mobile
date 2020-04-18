@@ -21,7 +21,9 @@ const Saved = () => {
           <TextInput style={styles.input} placeholder="Search..." />
         </View>
         <View style={styles.main}>
-          <Text>No Saved Article</Text>
+          <Text style={{width: width, textAlign: 'center', color: '#acacac'}}>
+            Sorry, There is no data to appear
+          </Text>
         </View>
       </ScrollView>
     </View>

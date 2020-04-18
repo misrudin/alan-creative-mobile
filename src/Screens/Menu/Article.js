@@ -23,15 +23,17 @@ const Article = props => {
   const dispatch = useDispatch();
   const {allPost, detailPost} = useSelector(state => state.posts);
   const {detailMedia} = useSelector(state => state.media);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [show, setShow] = useState(false);
   const [loading2, setLoading2] = useState(true);
   const [error2, setError2] = useState(false);
+  const [key, setKey] = useState('');
+  const [page, setPage] = useState('1');
 
   const getData = async () => {
     setLoading(true);
-    await dispatch(getAllPosts(1, ''))
+    await dispatch(getAllPosts(page, key))
       .then(() => {
         setLoading(false);
         setError(false);
@@ -58,9 +60,6 @@ const Article = props => {
 
   useEffect(() => {
     getData();
-    setInterval(function() {
-      getData();
-    }, 100000);
   }, []);
 
   const muncul = data => {
@@ -68,14 +67,35 @@ const Article = props => {
     setShow(true);
   };
 
+  const nextPage = () => {
+    let pages = parseInt(page) + 1;
+    setPage(pages);
+    // alert(page);
+    getData();
+  };
+  const prevPage = () => {
+    if (page >= 1) {
+      let pages = parseInt(page) - 1;
+      setPage(pages);
+      // alert(page);
+      getData();
+    } else {
+      setPage(1);
+    }
+  };
+
   return (
     <>
       <View style={styles.container}>
-        {/* <View style={styles.brand}>
-          <Text style={styles.title}>Article</Text>
-        </View> */}
         <View style={styles.header}>
-          <TextInput style={styles.input} placeholder="Search..." />
+          <TextInput
+            style={styles.input}
+            placeholder="Search..."
+            value={key}
+            onChangeText={e => setKey(e)}
+            onSubmitEditing={() => getData()}
+            keyboardType={'web-search'}
+          />
         </View>
         <ScrollView>
           <View style={styles.main}>
@@ -89,17 +109,56 @@ const Article = props => {
               <View style={{width: width, alignItems: 'center', marginTop: 10}}>
                 <Text
                   style={{width: width, textAlign: 'center', color: '#acacac'}}>
-                  Opss, No Internet, Please Try Again!
+                  Sorry, There is no data to appear, Try again!
                 </Text>
               </View>
             ) : (
               allPost.map((data, i) => {
                 return (
-                  <Post key={i} data={data} onPress={data => muncul(data)} />
+                  <Post
+                    key={i}
+                    data={data}
+                    index={i}
+                    onPress={data => muncul(data)}
+                  />
                 );
               })
             )}
           </View>
+          {!loading && !error ? (
+            <>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <TouchableOpacity onPress={() => prevPage()}>
+                  <Text
+                    style={{
+                      backgroundColor: '#0066ff',
+                      paddingHorizontal: 10,
+                      paddingVertical: 8,
+                      marginBottom: 10,
+                      borderRadius: 4,
+                      color: '#fff',
+                      margin: 5,
+                    }}>
+                    Prev Page
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => nextPage()}>
+                  <Text
+                    style={{
+                      backgroundColor: '#0066ff',
+                      paddingHorizontal: 10,
+                      paddingVertical: 8,
+                      marginBottom: 10,
+                      borderRadius: 4,
+                      color: '#fff',
+                      margin: 5,
+                    }}>
+                    Next Page
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </>
+          ) : null}
         </ScrollView>
       </View>
       {/* modal */}

@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 
 const Menu = ({onPress}) => {
   return (
@@ -119,7 +126,9 @@ const Menu = ({onPress}) => {
       <TouchableOpacity
         activeOpacity={0.6}
         style={styles.menuItem}
-        onPress={() => onPress('Instagram')}>
+        onPress={() =>
+          Linking.openURL(`http://instagram.com/_u/alancreativeid/`)
+        }>
         <View style={styles.containImg}>
           <Image
             source={require('../Assets/Img/instagram.png')}

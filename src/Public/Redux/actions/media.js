@@ -25,3 +25,9 @@ export const getDetailMediaNews = id => {
     payload: axios.get(URL + `media/${id}`),
   };
 };
+export const getDetailMediaPort = id => {
+  return {
+    type: 'P_DETAIL',
+    payload: axios.get(URL + `media/${id}`),
+  };
+};
